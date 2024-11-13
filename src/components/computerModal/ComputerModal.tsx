@@ -27,10 +27,9 @@ const ComputerModal = ({ onClose }: onCloseProps) => {
   const handleInsert = async () => {
     setLoading(true);
     const result = await insert(newComputer);
-    setLoading(true);
+    setLoading(false);
     if (result) {
       onClose();
-      location.reload();
     }
   };
 

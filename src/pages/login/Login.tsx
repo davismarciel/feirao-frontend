@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { login as apiLogin } from "../../api/auth";
-
-const Login: React.FC = () => {
+import styles from "./login.module.css";
+const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,21 +23,38 @@ const Login: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button type="submit">Login</button>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginBox}>
+          <img
+            src="/public/1704308192_logofs.png"
+            alt="logo"
+            className={styles.logo}
+          />
+          <h2>Área de acesso</h2>
+          <div className={styles.inputGroup}>
+            <input
+              type="text"
+              id="login"
+              placeholder="Digite seu login"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              type="password"
+              id="senha"
+              placeholder="Digite sua senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className={styles.loginButton}>
+            Acessar
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

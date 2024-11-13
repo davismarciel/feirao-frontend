@@ -102,7 +102,6 @@ const Computers = () => {
           ))}
         </tbody>
       </table>
-
       {showModal && <ComputerModal onClose={() => setShowModal(false)} />}
     </div>
   );

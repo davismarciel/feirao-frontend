@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { login as apiLogin } from "../../api/auth";
 import styles from "./login.module.css";
+
 const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
@@ -17,45 +18,47 @@ const Login = () => {
       login(token);
     } catch (err) {
       console.log(err);
-      setError("Login failed. Please check your credentials.");
+      setError("Erro no login. Por favor, verifique suas credenciais.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div className={styles.loginContainer}>
-        <div className={styles.loginBox}>
-          <img
-            src="/public/1704308192_logofs.png"
-            alt="logo"
-            className={styles.logo}
-          />
-          <h2>Área de acesso</h2>
-          <div className={styles.inputGroup}>
-            <input
-              type="text"
-              id="login"
-              placeholder="Digite seu login"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.loginContainer}>
+          <div className={styles.loginBox}>
+            <img
+              src="/public/1704308192_logofs.png"
+              alt="logo"
+              className={styles.logo}
             />
+            <h2>Área de acesso</h2>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                id="login"
+                placeholder="Digite seu login"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="password"
+                id="senha"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {error && <p className={styles.error}>{error}</p>}
+            </div>
+            <button type="submit" className={styles.loginButton}>
+              Acessar
+            </button>
           </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              id="senha"
-              placeholder="Digite sua senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button type="submit" className={styles.loginButton}>
-            Acessar
-          </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

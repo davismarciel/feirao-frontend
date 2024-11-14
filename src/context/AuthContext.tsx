@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     if (savedToken) {
       setToken(savedToken);
     }
-    setLoading(false); // Certifique-se de definir `loading` como `false` após verificar o token
+    setLoading(false);
   }, []);
 
   const login = (token: string) => {

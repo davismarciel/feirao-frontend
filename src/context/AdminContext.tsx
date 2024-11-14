@@ -64,6 +64,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
       const insertData = await insertComputer(data);
       setComputer(insertData);
       setComputers((prevComputers) => [...prevComputers, insertData]);
+      location.reload();
       return insertData;
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");

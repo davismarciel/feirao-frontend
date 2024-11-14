@@ -9,18 +9,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #f0f0f0;
 }
 
 .loginContainer {
-  width: 840px;
+  width: 100%;
   max-width: 580px;
-  padding: 20px;
+  padding: 5rem;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  height: 100%;
 }
 
 .loginBox {
@@ -77,4 +75,10 @@ input[type="password"] {
 
 .loginButton:hover {
   background: #080850;
+}
+
+.error {
+  margin-top: 20px;
+  color: red;
+  text-align: center;
 }

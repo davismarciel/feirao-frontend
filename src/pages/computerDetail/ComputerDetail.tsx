@@ -5,8 +5,9 @@ import { useAuth } from "../../hooks/useAuth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { IoMdCreate, IoMdTrash } from "react-icons/io";
 import styles from "./styles.module.css";
+import { useFormattedDate } from "../../util/useFormattedDate";
 
-const ComputerDetail: React.FC = () => {
+const ComputerDetail = () => {
   const { token } = useAuth();
   const { id } = useParams<{ id: string }>();
   const { findById, loading, error, computer, destroy, edit } = useAdmin();
@@ -42,7 +43,11 @@ const ComputerDetail: React.FC = () => {
   }
 
   if (loading) {
-    return <ClipLoader />;
+    return (
+      <div className={styles.loaderContainer}>
+        <ClipLoader />
+      </div>
+    );
   }
 
   if (error) {
@@ -61,11 +66,10 @@ const ComputerDetail: React.FC = () => {
       <h1 className={styles.header}>Detalhes do Computador</h1>
       <form>
         <label>
-          ID:
-          <input type="text" name="id" value={formData?.id} disabled />
+          ID: <input type="text" name="id" value={formData?.id} disabled />
         </label>
         <label>
-          MAC:
+          MAC:{" "}
           <input
             type="text"
             name="mac"
@@ -74,7 +78,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Local Host Name:
+          Local Host Name:{" "}
           <input
             type="text"
             name="localHostName"
@@ -83,7 +87,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Processador:
+          Processador:{" "}
           <input
             type="text"
             name="processador"
@@ -92,7 +96,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          RAM Size:
+          RAM Size:{" "}
           <input
             type="number"
             name="ramSize"
@@ -101,7 +105,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Data de Instalação:
+          Data de Instalação:{" "}
           <input
             type="text"
             name="dataDeInstalacao"
@@ -110,7 +114,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Sistema Operacional:
+          Sistema Operacional:{" "}
           <input
             type="text"
             name="sistemaOperacional"
@@ -119,7 +123,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          IP:
+          IP:{" "}
           <input
             type="text"
             name="ip"
@@ -128,7 +132,7 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Loja:
+          Loja:{" "}
           <input
             type="text"
             name="loja"
@@ -137,25 +141,31 @@ const ComputerDetail: React.FC = () => {
           />
         </label>
         <label>
-          Data Atual:
+          Data Atual:{" "}
           <input
-            type="number"
+            type="text"
             name="dataAtual"
-            value={formData?.dataAtual || ""}
+            value={useFormattedDate(formData?.dataAtual || "")}
             onChange={handleInputChange}
           />
         </label>
       </form>
-      <button onClick={handleEdit}>
-        <Link to={"/dashboard/computadores"}>
+      <div className={styles.buttonContainer}>
+        <Link
+          to="/dashboard/computadores"
+          className={`${styles.actionButton} ${styles.editButton}`}
+          onClick={handleEdit}
+        >
           <IoMdCreate /> Editar
         </Link>
-      </button>
-      <button onClick={() => destroy(computer?.id.toString())}>
-        <Link to={"/dashboard/computadores"}>
+        <Link
+          to="/dashboard/computadores"
+          className={`${styles.actionButton} ${styles.deleteButton}`}
+          onClick={() => destroy(computer?.id.toString())}
+        >
           <IoMdTrash /> Deletar
         </Link>
-      </button>
+      </div>
     </div>
   );
 };

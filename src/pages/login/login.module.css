@@ -1,24 +1,17 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-body {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
 }
-
 .loginContainer {
-  width: 100%;
-  max-width: 580px;
-  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 25%;
+  padding: 1rem;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .loginBox {
@@ -52,6 +45,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
+  outline: none;
   text-align: center;
   width: 100%;
   padding: 0.5rem;

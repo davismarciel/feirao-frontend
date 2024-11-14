@@ -23,9 +23,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.loginContainer}>
+    <div className={styles.container}>
+      <div className={styles.loginContainer}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.loginBox}>
             <img
               src="/public/1704308192_logofs.png"
@@ -56,8 +56,8 @@ const Login = () => {
               Acessar
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
